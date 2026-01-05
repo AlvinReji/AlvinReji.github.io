@@ -316,32 +316,47 @@ body {
     flex-wrap: wrap;
 }
 
-.hero-stats {
+.hero-downloads {
     display: flex;
-    gap: 40px;
+    gap: 16px;
+    margin-top: 24px;
     flex-wrap: wrap;
 }
 
-.stat {
-    display: flex;
-    flex-direction: column;
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.938rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-    margin-bottom: 8px;
+.download-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
-.stat-label {
-    color: var(--text-secondary);
-    font-size: 0.875rem;
-    font-weight: 500;
+.download-btn svg {
+    flex-shrink: 0;
+}
+
+.download-btn:hover svg {
+    animation: download-bounce 0.6s ease-in-out infinite;
+}
+
+@keyframes download-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
 }
 
 /* Hero Image */
@@ -400,19 +415,19 @@ body {
 
 .floating-card.card-1 {
     top: 10%;
-    right: 60%;
+    left: -5%;
     animation-delay: 0s;
 }
 
 .floating-card.card-2 {
-    top: 50%;
-    right: -10%;
+    top: 55%;
+    right: 5%;
     animation-delay: 1s;
 }
 
 .floating-card.card-3 {
-    bottom: 15%;
-    right: 50%;
+    bottom: 10%;
+    left: 15%;
     animation-delay: 2s;
 }
 
@@ -1187,7 +1202,7 @@ body {
         justify-content: center;
     }
     
-    .hero-stats {
+    .hero-downloads {
         justify-content: center;
     }
     
