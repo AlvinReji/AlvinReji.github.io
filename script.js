@@ -365,7 +365,7 @@ document.addEventListener('keydown', (e) => {
 // CONTACT FORM
 // ===================================
 const contactForm = document.querySelector('.contact-form');
-
+/*
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
@@ -384,7 +384,7 @@ contactForm.addEventListener('submit', (e) => {
     // Reset form
     contactForm.reset();
 });
-
+*/
 // ===================================
 // SMOOTH REVEAL ANIMATIONS
 // ===================================
