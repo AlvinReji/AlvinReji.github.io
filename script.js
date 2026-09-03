@@ -142,7 +142,7 @@ const projectData = {
             { src: 'assets/projects/atlas-11.jpg', fit: 'cover' },
             { src: 'assets/projects/atlas-12.jpg', fit: 'cover' }
         ],
-        overview: 'ATLAS (Angular Triangulation Location Assistance System) is a Multi-Point SBI Geo-Locator System developed during a BAE Systems intern program to detect and geolocate a stranded warfighter in real time, improving battlefield situational awareness. The system was built across four Integrated Project Teams (IPTs), and I served as Hardware Lead for IPT-D — owning the complete direction-finding hardware, from component selection through final field-tested build.',
+        overview: 'ATLAS (Angular Triangulation Location Assistance System) is a Multi-Point SBI Geo-Locator System developed during a BAE Systems intern program to detect and geolocate a stranded warfighter in real time, improving battlefield situational awareness. The design included developing a spinning directional antenna to identify the area of concern. The system was built across four Integrated Project Teams (IPTs), and I served as Hardware Lead for IPT-D — owning the complete direction-finding hardware, from component selection through final field-tested build.',
         highlights: [
             'Directed hardware design and component selection for the Direction Finding subsystem (IPT-D)',
             'Presented hardware design and rationale at customer-facing design reviews (SRR, CDR, TRR, FDR)',
