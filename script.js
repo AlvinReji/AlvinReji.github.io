@@ -505,7 +505,7 @@ const projectData = {
         title: 'Mini Trash Compactor: Mechanical Design & Stress Analysis',
         category: 'ME 4550 Mechanical Engineering Design · Northeastern University',
         date: '2025 · 6-person team project',
-        overview: 'A six-person capstone design project to build a motorized household trash compactor small enough for an apartment, dorm, or office. The design uses a single electric motor driving a chain, which turns two synchronized lead screws to lower a ram and crush waste inside a removable bin, avoiding the bulk and cost of a hydraulic or pneumatic system. I led the fatigue failure analysis for the ram and the T-slot fastener analysis for the frame connections, and contributed to the power transmission (chain and motor) analysis.',
+        overview: 'A six-person design project to build a motorized household trash compactor small enough for an apartment, dorm, or office. The design uses a single electric motor driving a chain, which turns two synchronized lead screws to lower a ram and crush waste inside a removable bin, avoiding the bulk and cost of a hydraulic or pneumatic system. I led the fatigue failure analysis for the ram and the T-slot fastener analysis for the frame connections, and contributed to the power transmission (chain and motor) analysis.',
         highlights: [
             'Co-designed a fully mechanized, dual-lead-screw compaction mechanism driven by a single motor and chain',
             'Verified every component and bolted connection with hand calculations cross-checked against Fusion 360 / SolidWorks FEA',
