@@ -128,8 +128,8 @@ const projectData = {
         title: 'ATLAS – Direction Finding System (IPT-D)',
         category: 'BAE Systems Intern Program · Defense Systems',
         date: '2026',
-        overview: 'ATLAS (Angular Triangulation Location Assistance System) is a Multi-Point SBI Geo-Locator System developed during a BAE Systems intern program to detect and geolocate a stranded warfighter in real time, improving battlefield situational awareness. The system was built across four Integrated Project Teams (IPTs), and I served as Hardware Lead for IPT-D, owning the complete direction-finding hardware from component selection through final field-tested build.',
-        disclaimer: 'All diagrams and CAD files shown for this project were personally recreated by me to illustrate the design and may differ slightly from the actual BAE Systems hardware. No dimensions are included in any of the drawings below.',
+        overview: 'ATLAS (Angular Triangulation Location Assistance System) was a Multi-Point SBI Geo-Locator System built as a summer intern project at BAE Systems, simulating the detection and geolocation of a signal source to practice a full systems-engineering design cycle on an accelerated, summer-long timeline. It was a training exercise, not a fielded or military-grade system. The project was structured across four Integrated Project Teams (IPTs) to mirror how a real engineering program is organized, and I served as Hardware Lead for IPT-D, owning the complete direction-finding hardware from component selection through final field-tested build.',
+        disclaimer: 'This was an internal BAE Systems intern training project, not a fielded or military-grade system. All diagrams and CAD files shown were personally recreated by me to illustrate the design and may differ slightly from the actual hardware. No dimensions are included in any of the drawings below.',
         highlights: [
             'Directed hardware design and component selection for the Direction Finding subsystem (IPT-D)',
             'Presented hardware design and rationale at customer-facing design reviews (SRR, CDR, TRR, FDR)',
