@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alvin Reji | Mechanical & Aerospace Engineer</title>
-    <meta name="description" content="Mechanical Engineering student at Northeastern University specializing in aerospace systems, robotics, and surgical product development.">
+    <meta name="description" content="Mechanical Engineering student at Northeastern University specializing in aerospace systems, robotics, and surgical product development. Incoming co-op at Blue Origin in Cape Canaveral, FL, Spring 2027.">
     <link rel="icon" type="image/gif" href="assets/favicon.gif">
     
     <!-- Fonts -->
@@ -125,8 +125,9 @@
                 <div class="about-text">
                     <p class="lead-text">
                         I'm a Mechanical Engineering student at Northeastern University with a passion for 
-                        aerospace systems, robotics, and medical device innovation. Most recently, I worked at 
-                        BAE Systems as a Mechanical Engineering Intern developing classified defense systems.
+                        aerospace systems, robotics, and medical device innovation. I've accepted a co-op offer 
+                        to join Blue Origin in Cape Canaveral, FL starting Spring 2027, continuing to build toward 
+                        a career in mechanical engineering within aerospace.
                     </p>
                     <p>
                         My engineering journey combines rigorous technical analysis with hands-on prototyping 
@@ -246,6 +247,30 @@
                 <h2 class="section-title">Experience</h2>
             </div>
             <div class="experience-grid">
+                <!-- Blue Origin -->
+                <div class="experience-card featured incoming" data-animate>
+                    <div class="experience-header">
+                        <div class="experience-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                            </svg>
+                        </div>
+                        <div class="experience-meta">
+                            <span class="company">Blue Origin · Cape Canaveral, FL</span>
+                            <span class="date">Starting Spring 2027</span>
+                        </div>
+                    </div>
+                    <h3>Aerospace Systems Engineer Co-Op <span class="incoming-tag">Incoming</span></h3>
+                    <p>Accepted a co-op offer to join Blue Origin in Cape Canaveral, FL, continuing to build toward a career in mechanical engineering within aerospace.</p>
+                    <div class="experience-tags">
+                        <span>Aerospace</span>
+                        <span>Co-Op</span>
+                    </div>
+                </div>
+
                 <!-- BAE Systems -->
                 <div class="experience-card featured" data-animate>
                     <div class="experience-header">
@@ -445,27 +470,6 @@
             </div>
 
             <div class="projects-grid">
-                <!-- Project: Mini Trash Compactor -->
-                <div class="project-card" data-category="mechanical" data-animate onclick="openProjectModal('trash-compactor')">
-                    <div class="project-image">
-                        <img src="assets/projects/compactor-4-cad-motor.jpg" alt="Mini Trash Compactor CAD Assembly" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tags">
-                            <span>Mechanical Design</span>
-                            <span>2025</span>
-                        </div>
-                        <h3>Mini Trash Compactor</h3>
-                        <p>Led fatigue analysis and co-designed a dual-power-screw compaction mechanism for a six-person mechanical design course, verifying every component and connection by hand and by FEA.</p>
-                        <button class="view-details-btn" onclick="event.stopPropagation(); openProjectModal('trash-compactor')">
-                            View Details
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
                 <!-- Project 0: ATLAS -->
                 <div class="project-card" data-category="aerospace-defense" data-animate onclick="openProjectModal('atlas')">
                     <div class="project-image">
@@ -479,6 +483,27 @@
                         <h3>ATLAS – Direction Finding System</h3>
                         <p>Led hardware design for a military-grade direction-finding system, from component selection to a field-tested prototype, as Hardware Lead on BAE Systems' internal geo-locator program.</p>
                         <button class="view-details-btn" onclick="event.stopPropagation(); openProjectModal('atlas')">
+                            View Details
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project: Mini Trash Compactor -->
+                <div class="project-card" data-category="mechanical" data-animate onclick="openProjectModal('trash-compactor')">
+                    <div class="project-image">
+                        <img src="assets/projects/compactor-4-cad-motor.jpg" alt="Mini Trash Compactor CAD Assembly" loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Mechanical Design</span>
+                            <span>2025</span>
+                        </div>
+                        <h3>Mini Trash Compactor</h3>
+                        <p>Led fatigue analysis and co-designed a dual-power-screw compaction mechanism for a six-person mechanical design course, verifying every component and connection by hand and by FEA.</p>
+                        <button class="view-details-btn" onclick="event.stopPropagation(); openProjectModal('trash-compactor')">
                             View Details
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>

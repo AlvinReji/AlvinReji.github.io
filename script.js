@@ -129,6 +129,7 @@ const projectData = {
         category: 'BAE Systems Intern Program · Defense Systems',
         date: '2026',
         overview: 'ATLAS (Angular Triangulation Location Assistance System) is a Multi-Point SBI Geo-Locator System developed during a BAE Systems intern program to detect and geolocate a stranded warfighter in real time, improving battlefield situational awareness. The system was built across four Integrated Project Teams (IPTs), and I served as Hardware Lead for IPT-D, owning the complete direction-finding hardware from component selection through final field-tested build.',
+        disclaimer: 'All diagrams and CAD files shown for this project were personally recreated by me to illustrate the design and may differ slightly from the actual BAE Systems hardware. No dimensions are included in any of the drawings below.',
         highlights: [
             'Directed hardware design and component selection for the Direction Finding subsystem (IPT-D)',
             'Presented hardware design and rationale at customer-facing design reviews (SRR, CDR, TRR, FDR)',
@@ -147,8 +148,8 @@ const projectData = {
             {
                 text: 'Selected every hardware component in the DF system (the 467MHz Yagi and omni antennas, DC motor, magnetometer, ADALM Pluto SDR, wideband LNA, SPDT switch, H-bridge motor driver, step-up converter, and battery) while tracking spend against an allocated budget.',
                 images: [
-                    { src: 'assets/projects/atlas-3.jpg', caption: 'Direction Finding subsystem block diagram, color-coded by component type (RF, power, processing, mechanical) to keep the four-team IPT structure aligned.' },
-                    { src: 'assets/projects/atlas-4.jpg', caption: 'System-level wiring and interface diagram mapping every selected component (Pluto SDR, LNA, SPDT switch, H-bridge, Raspberry Pi, power banks) to its physical, electrical, and data connections.' }
+                    { src: 'assets/projects/atlas-subsystem-diagram.png', caption: 'Direction Finding subsystem interface diagram, showing how the subsystem connects outward to communications, power, processing, and UI components across the other IPTs.' },
+                    { src: 'assets/projects/atlas-wiring-diagram.png', caption: 'Color-coded wiring diagram mapping power, GPIO, GND, serial, and SMA connections across the buck-boost converter, H-bridge, motor, Raspberry Pi, and RF components.' }
                 ]
             },
             {
@@ -644,6 +645,7 @@ function openProjectModal(projectId) {
         <div class="modal-section">
             <h3>Project Overview</h3>
             <p>${project.overview}</p>
+            ${project.disclaimer ? `<p class="modal-disclaimer"><strong>Note:</strong> ${project.disclaimer}</p>` : ''}
             ${project.highlights ? `
             <div class="modal-highlights">
                 <span class="modal-highlights-label">At a Glance</span>
