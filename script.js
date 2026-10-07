@@ -1,4 +1,51 @@
 // ===================================
+// DARK MODE
+// ===================================
+(function() {
+    const toggle = document.getElementById('themeToggle');
+    const stored = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = stored || (systemPrefersDark ? 'dark' : 'light');
+
+    if (initial === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    toggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+})();
+
+// ===================================
+// PROJECT CARD TILT
+// ===================================
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -6;
+            const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 6;
+            card.style.transition = 'transform 0.05s linear';
+            card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            card.style.transform = '';
+        });
+    });
+}
+
+// ===================================
 // NAVIGATION
 // ===================================
 const navbar = document.getElementById('navbar');
