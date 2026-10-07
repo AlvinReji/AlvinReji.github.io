@@ -1,11 +1,49 @@
 // ===================================
+// SCROLL PROGRESS BAR
+// ===================================
+(function() {
+    const bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+
+    function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = pct + '%';
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+})();
+
+// ===================================
+// MAGNETIC BUTTONS
+// ===================================
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transition = 'transform 0.05s linear';
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3 - 2}px)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            btn.style.transform = 'translate(0, 0)';
+        });
+    });
+}
+
+// ===================================
 // DARK MODE
 // ===================================
 (function() {
     const toggle = document.getElementById('themeToggle');
     const stored = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initial = stored || (systemPrefersDark ? 'dark' : 'light');
+    const initial = stored || 'light';
 
     if (initial === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -22,28 +60,6 @@
         }
     });
 })();
-
-// ===================================
-// PROJECT CARD TILT
-// ===================================
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -6;
-            const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 6;
-            card.style.transition = 'transform 0.05s linear';
-            card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-            card.style.transform = '';
-        });
-    });
-}
 
 // ===================================
 // NAVIGATION
@@ -638,15 +654,37 @@ const projectData = {
 };
 
 // Renders a figure (image + caption) for a single step/result item.
+// A single image renders as before; multiple images render as a gallery
+// that stacks vertically on desktop but becomes a swipeable, snap-scrolling
+// carousel on mobile (see .step-gallery CSS and the swipe-dot sync JS below).
 function renderStepFigure(item) {
     const shots = item.images || (item.image ? [{ src: item.image, caption: item.caption }] : []);
     if (!shots.length) return '';
-    return shots.map((shot, i) => `
+
+    if (shots.length === 1) {
+        const shot = shots[0];
+        return `
         <figure class="step-figure">
             <img src="${shot.src}" alt="${shot.caption || ''}" loading="lazy" onclick="openLightbox('${shot.src}')">
             ${shot.caption ? `<figcaption>${shot.caption}</figcaption>` : ''}
-        </figure>
+        </figure>`;
+    }
+
+    const slides = shots.map(shot => `
+        <div class="step-gallery-slide">
+            <figure class="step-figure">
+                <img src="${shot.src}" alt="${shot.caption || ''}" loading="lazy" onclick="openLightbox('${shot.src}')">
+                ${shot.caption ? `<figcaption>${shot.caption}</figcaption>` : ''}
+            </figure>
+        </div>
     `).join('');
+    const dots = shots.map((_, i) => `<span class="step-gallery-dot${i === 0 ? ' active' : ''}"></span>`).join('');
+
+    return `
+        <div class="step-gallery">
+            <div class="step-gallery-track">${slides}</div>
+            <div class="step-gallery-dots">${dots}</div>
+        </div>`;
 }
 
 // Renders an ordered list of process steps, each optionally carrying inline image(s).
@@ -734,6 +772,15 @@ function openProjectModal(projectId) {
     
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Sync each swipeable gallery's dots to its scroll position (mobile)
+    modalBody.querySelectorAll('.step-gallery-track').forEach(track => {
+        const dots = track.parentElement.querySelectorAll('.step-gallery-dot');
+        track.addEventListener('scroll', () => {
+            const index = Math.round(track.scrollLeft / track.clientWidth);
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        }, { passive: true });
+    });
 }
 
 function closeProjectModal() {
@@ -748,6 +795,50 @@ document.getElementById('projectModal').addEventListener('click', (e) => {
         closeProjectModal();
     }
 });
+
+// ===================================
+// MODAL SWIPE-TO-DISMISS (mobile)
+// ===================================
+(function() {
+    const modalContent = document.querySelector('#projectModal .modal-content');
+    if (!modalContent) return;
+
+    let startY = 0;
+    let currentY = 0;
+    let dragging = false;
+
+    modalContent.addEventListener('touchstart', (e) => {
+        if (modalContent.scrollTop > 0) return;
+        startY = e.touches[0].clientY;
+        currentY = startY;
+        dragging = true;
+        modalContent.style.transition = 'none';
+    }, { passive: true });
+
+    modalContent.addEventListener('touchmove', (e) => {
+        if (!dragging) return;
+        currentY = e.touches[0].clientY;
+        const delta = currentY - startY;
+        if (delta > 0) {
+            modalContent.style.transform = `translateY(${delta}px)`;
+            modalContent.style.opacity = String(Math.max(1 - delta / 400, 0.5));
+        }
+    }, { passive: true });
+
+    modalContent.addEventListener('touchend', () => {
+        if (!dragging) return;
+        dragging = false;
+        const delta = currentY - startY;
+        modalContent.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        if (delta > 120) {
+            closeProjectModal();
+        }
+        modalContent.style.transform = '';
+        modalContent.style.opacity = '';
+        startY = 0;
+        currentY = 0;
+    });
+})();
 
 // ===================================
 // IMAGE LIGHTBOX
